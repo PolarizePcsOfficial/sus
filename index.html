@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User IP Address</title>
+</head>
+
+<body>
+    <h1 id="ip-address">Your IP Address will be displayed here.</h1>
+    <script>
+        fetch('/log-ip')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('ip-address').textContent = `Your Public IP Address is: ${data.ip}`;
+            })
+            .catch(err => {
+                console.error('Error fetching IP address:', err);
+                document.getElementById('ip-address').textContent = 'Unable to retrieve IP address.';
+            });
+    </script>
+</body>
+
+</html>
